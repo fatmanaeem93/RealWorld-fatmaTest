@@ -108,6 +108,10 @@ describe("interaction with realapp",()=>{
                     .and("have.text", "Transaction Submitted!");
         // cy.get('[data-test="transaction-create-submit-request"]').should("contain"," $50,000.00")
     });
+    it('Verify Clicking on return to transaction button', () => {
+        cy.get('[data-test="new-transaction-return-to-transactions"] > .MuiButton-label').click()
+        cy.url().should("contain","/")
+    });
    
     it('verify logout',()=>{
         cy.get("div:nth-child(5) > ul > div > div > div.MuiListItemText-root > span").should("have.text","Logout").click()
