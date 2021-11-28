@@ -73,6 +73,7 @@ describe("interaction with realapp",()=>{
         cy.url().should("contain","/transaction/new")
     });
     it('Verify searching of receiver user', () => {
+        cy.get('span.MuiStepLabel-iconContainer svg.MuiSvgIcon-root').first().should('have.css','color', 'rgb(63, 81, 181)')
        cy.get(":nth-child(3) > .MuiStepLabel-root > .MuiStepLabel-iconContainer > .MuiSvgIcon-root").should("not.have.class","MuiStepIcon-active")
         cy.get("#user-list-search-input").type("receiver1")
         cy.wait(2000)
@@ -93,14 +94,21 @@ describe("interaction with realapp",()=>{
     it('Verify clicking on request button', () => {
         cy.get('.MuiGrid-root button[data-test="transaction-create-submit-request"]').should("not.be.disabled").click()
         });
+    it('Verify Completed icon enabeld', () => {
+        cy.get('span.MuiStepLabel-iconContainer svg.MuiSvgIcon-root').last().should('have.css','color', 'rgb(63, 81, 181)')
+    });
     it('Verify name of receiver', () => {
         cy.get('div:nth-child(2) > h2').should('contain','receiver1')
         // cy.get(":nth-child(3) > .MuiStepLabel-root > .MuiStepLabel-iconContainer > .MuiSvgIcon-root").should("have.class","MuiStepIcon-active")
   
     });
     it('Verify transaction added', () => {
+        cy.getBySel("alert-bar-success")
+                    .should("be.visible")
+                    .and("have.text", "Transaction Submitted!");
         // cy.get('[data-test="transaction-create-submit-request"]').should("contain"," $50,000.00")
     });
+   
     it('verify logout',()=>{
         cy.get("div:nth-child(5) > ul > div > div > div.MuiListItemText-root > span").should("have.text","Logout").click()
         cy.url().should("contain","/signin")
