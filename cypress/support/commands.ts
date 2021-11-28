@@ -1,7 +1,7 @@
 // @ts-check
 ///<reference path="../global.d.ts" />
 
-import { pick } from "lodash/fp";
+import { pick, trimCharsEnd } from "lodash/fp";
 import { format as formatDate } from "date-fns";
 import { isMobile } from "./utils";
 
@@ -12,6 +12,7 @@ import "@percy/cypress";
 import "./auth-provider-commands/cognito";
 import "./auth-provider-commands/auth0";
 import "./auth-provider-commands/okta";
+import { invoke } from "lodash";
 
 // custom command to make taking snapshots with full name
 // formed from the test title + suffix easier
@@ -364,3 +365,36 @@ Cypress.Commands.add("loginByGoogleApi", () => {
     });
   });
 });
+
+Cypress.Commands.add("searchReceiver",(reciverName)=>{
+cy.get('.MuiListItemText-root p').contains(reciverName).then((name)=>{
+let Receiver =cy.wrap(name)
+})
+});
+//register
+Cypress.Commands.add("register",(firstName,lastName,username,password,confirmPassword)=>{
+  cy.visit("/signup")
+  cy.get("#firstName").clear().type(firstName).should("have.value",firstName).and("be.focused")
+  cy.get("#lastName").clear().type(lastName).should("have.value",lastName).and("be.focused")
+  cy.get("#username").clear().type(username).should("have.value",username).and("be.focused")
+  cy.get("#password").clear().type(password).should("have.value",password).and("be.focused")
+  cy.get("#confirmPassword").clear().type(confirmPassword).should("have.value",confirmPassword).and("be.focused")
+  cy.get("span.MuiButton-label").should("contain","Sign Up").click()
+  cy.url().should("include","/signin")
+});
+//sign in
+Cypress.Commands.add("signin",(username,password)=>{
+  cy.visit("/signin")
+  cy.get("#username").clear().type(username).should("have.value",username).and("be.focused")
+  cy.get("#password").clear().type(password).should("have.value",password).and("be.focused")
+  cy.get("form button").should("contain","Sign In").click()
+  cy.url().should("include","/")
+});
+Cypress.Commands.add('createBankAccount',(bankname,routingnumber,accountnumber,)=>{
+  cy.get('[data-test="user-onboarding-next"]').click()
+  cy.get("#bankaccount-bankName-input").clear().type(bankname).should("have.value",bankname).and("be.focused")
+  cy.get("#bankaccount-routingNumber-input").clear().type(routingnumber).should("have.value",routingnumber).and("be.focused")
+  cy.get("#bankaccount-accountNumber-input").clear().type(accountnumber).should("have.value",accountnumber).and("be.focused")
+  cy.get('[data-test="bankaccount-submit"]').click()
+  cy.get('[data-test="user-onboarding-next"]').click()
+})
