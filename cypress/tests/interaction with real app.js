@@ -106,6 +106,52 @@ describe("interaction with realapp",()=>{
         cy.url().should("contain","/signin")
     })
     })
-  
+    context("receiver operation",()=>{
+        it('Verify sign in receiver account', () => {
+           cy.signin("sham","123456")    
+         });
+        it('Verify Create bank account', () => {
+            cy.createBankAccount("bankrec","123456789","123456789")
+        });
+        it('Verify clicking on notification button',()=>{
+            cy.get('.MuiToolbar-root a[href="/notifications"]').should("have.text","1")
+            cy.get("a.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorInherit").click()
+            cy.url().should("contain","/notifications")
+            
+        })
+        it('Verify header of page is notification', () => {
+            cy.get(".MuiContainer-maxWidthMd > div > div > div > h2").should("have.text","Notifications")
+        });
+        it('Verify info of sender', () => {
+            cy.get("ul[data-test] li:first-child .MuiListItemText-root span").should("contain","fatma shawaf")
+        });
+        it('Verify clicking on dissmis button', () => {
+           cy.get("ul[data-test] li:first-child button").click()
+        });
+        it('Verify clicking on Mine tab', () => {
+            cy.get('.MuiGrid-root ul a[href="/"]').click()
+           cy.url().should("contain","/")
+           cy.get('.MuiTabs-scroller .MuiTabs-flexContainer a[href="/personal"]').click()
+           cy.url().should("contain","/personal")
+        });
+       it('Verify that the requested exist in mine menu', () => {
+          cy.get("div:nth-child(1) > li div.MuiGrid-root.MuiGrid-container .MuiTypography-gutterBottom > span:nth-child(1)")
+          .should("contain","fatma shawaf")     
+          cy.get("div:nth-child(1) > li div.MuiGrid-root.MuiGrid-container .MuiTypography-gutterBottom > span:nth-child(3)")
+          .should("contain","receiver1 sham")    
+       });
+       it('Verify Clicking on requested in mine menu', () => {
+           cy.get(".ReactVirtualized__Grid__innerScrollContainer div:first-child li").click()
+           cy.url().should("contain","/transaction")
+       });
+       it('Verify clicking on Accept Request', () => {
+          cy.contains("Accept Request").click()
+          cy.url().should("contain","/transaction/")
+       });
+       it('Verify transaction added succefully',()=>{
+       cy.get(".MuiGrid-root p span:first-child").should('have.text','fatma shawaf')
+       cy.get(".MuiGrid-root p span:nth-child(3)").should('have.text','receiver1 sham')
+       })
+        })
 
 })

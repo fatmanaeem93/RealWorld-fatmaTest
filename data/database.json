@@ -96,6 +96,50 @@
       "balance": 0,
       "createdAt": "2021-11-28T07:02:44.899Z",
       "modifiedAt": "2021-11-28T07:02:44.899Z"
+    },
+    {
+      "id": "mnx7o16Dj",
+      "uuid": "5225daca-16c0-4b1d-88dc-5a9f374fee1b",
+      "firstName": "fatma",
+      "lastName": "shawaf",
+      "username": "fatma shawaf",
+      "password": "$2a$10$Q5VGSK/QgI.0fMY42/sR9uhgvOx8ljD1VtFkhHoDyy/rPu9q3llLq",
+      "balance": 0,
+      "createdAt": "2021-11-28T07:04:35.801Z",
+      "modifiedAt": "2021-11-28T07:04:35.801Z"
+    },
+    {
+      "id": "VJX37Enxf",
+      "uuid": "311399ab-7c24-422b-84e7-1ab489ce76ac",
+      "firstName": "receiver1",
+      "lastName": "sham",
+      "username": "sham",
+      "password": "$2a$10$s3ta0GnULceMSscZO/AgcOCjp7ukaaAlFB5fKXoA.2VFSMDVs2oQi",
+      "balance": 0,
+      "createdAt": "2021-11-28T07:04:38.384Z",
+      "modifiedAt": "2021-11-28T07:04:38.384Z"
+    },
+    {
+      "id": "JHJqPylzZ",
+      "uuid": "74266d03-b392-4feb-aa47-ebd0779e1e28",
+      "firstName": "fatma",
+      "lastName": "shawaf",
+      "username": "fatma shawaf",
+      "password": "$2a$10$/pWaVlSRcEhBv2DwMdkirehibLbZ.e3KN9/iR.VAz4aeiXXN63Iba",
+      "balance": 0,
+      "createdAt": "2021-11-28T07:05:30.095Z",
+      "modifiedAt": "2021-11-28T07:05:30.095Z"
+    },
+    {
+      "id": "kgRMxTFp9",
+      "uuid": "58b193ff-f074-4065-a3f3-c53e98e83b25",
+      "firstName": "receiver1",
+      "lastName": "sham",
+      "username": "sham",
+      "password": "$2a$10$BsId3RK6aqOFHfYDZRpgw.E0n8EQJ9/Gmn9Xx7W2VoFGXpqSDd/ly",
+      "balance": 0,
+      "createdAt": "2021-11-28T07:05:32.615Z",
+      "modifiedAt": "2021-11-28T07:05:32.615Z"
     }
   ],
   "contacts": [
